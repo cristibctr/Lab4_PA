@@ -5,6 +5,7 @@
  */
 package lab4_pa;
 
+import com.github.javafaker.Faker;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
@@ -31,12 +32,13 @@ public class Problem {
     Set<School> schoolSet = new TreeSet<>();
     
     public Problem() {
+        Faker faker = new Faker();
         var students = IntStream.rangeClosed(0,3)
-                        .mapToObj(i -> new Student ("S" + i))
+                        .mapToObj(i -> new Student (faker.name().fullName()))
                         .toArray(Student[]::new);
         
         var schools = IntStream.rangeClosed(0, 2)
-                        .mapToObj(i -> new School ("H" + i, (int)(Math.random()*10) + 1))
+                        .mapToObj(i -> new School (faker.university().name(), (int)(Math.random()*10)%students.length + 1))
                         .toArray(School[]::new);
         
         studentList.addAll(Arrays.asList(students));
@@ -74,27 +76,29 @@ public class Problem {
         return schoolSet;
     }
     public void printProblem() {
+        System.out.println("Students:");
         studentList.stream().forEach(s -> {
             System.out.print(s.getName() + ": ");
-            stdPrefMap.get(s).stream().forEach(std -> System.out.print(std.getName() + " "));
+            stdPrefMap.get(s).stream().forEach(std -> System.out.print(std.getName() + " | "));
             System.out.println();
         });
         
-        schoolSet.stream().forEach(s -> System.out.println(schPrefMap.get(s).stream().findFirst().get().getName() + " | "));
+        System.out.println();
+        System.out.println("Schools:");
         
         schoolSet.stream().forEach(s -> {
-            System.out.print(s.getName() + " (" + s.getCapacity() + ")" + ": ");
-            schPrefMap.get(s).stream().forEach(sch -> System.out.print(sch.getName() + " "));
+            System.out.print(s.getName() + " (capacity: " + s.getCapacity() + ")" + ": ");
+            schPrefMap.get(s).stream().forEach(sch -> System.out.print(sch.getName() + " | "));
             System.out.println();
         });
     }
     public void studLikeSch(List schools) {
-        System.out.println("Students who like all the schools in the list are: ");
+        System.out.println("\nStudents who like all the schools in the list are: ");
         List<Student> result = studentList.stream().filter(std -> stdPrefMap.get(std).containsAll(schools)).collect(Collectors.toList());
         result.stream().forEach(stud -> {System.out.println(stud.getName());});
     }
     public void schoolTopPref(Student prefStud) {
-        System.out.println("The schools that have " + prefStud.getName() + " as their top preference are: ");
+        System.out.println("\nThe schools that have " + prefStud.getName() + " as their top preference are: ");
         schoolSet.stream().filter(s -> schPrefMap.get(s).stream().findFirst().get().equals(prefStud)).forEach(sch -> System.out.print(sch.getName() + " "));
     }
 }

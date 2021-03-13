@@ -11,12 +11,18 @@ package lab4_pa;
  */
 public class Student {
     private String name;
+    private int examScore;
     public Student(String name){
         this.name = name;
+        examScore = (int)(Math.random()*10);
     }
 
     public String getName() {
         return name;
+    }
+
+    public int getExamScore() {
+        return examScore;
     }
     
     

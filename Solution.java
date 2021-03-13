@@ -34,6 +34,8 @@ public class Solution {
     public void printSolution()
     {
         Set<Map.Entry<Student, School>> entries = studToSchool.entrySet();
+        System.out.println();
+        System.out.println("The students are assigned to these schools without taking into account their exam note:");
         entries.stream().forEach(entry -> {
             System.out.println(entry.getKey().getName() + ":" + entry.getValue().getName());
         });

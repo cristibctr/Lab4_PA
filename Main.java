@@ -7,7 +7,6 @@ package lab4_pa;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -23,10 +22,11 @@ public class Main {
         firstSolution.solve();
         firstSolution.printSolution();
         
+        //List of schools based on some conditions - used to check which students like all of them
         List<School> schSet = new ArrayList<> (firstProblem.getSchoolSet().stream()
-                .filter(sch -> sch.getName().contains("H2") || sch.getName().contains("H1"))
+                .filter(sch -> sch.getName().length() < 12 || sch.getName().contains("Academy"))
                 .collect(Collectors.toList()));
-        System.out.println("The School list:");
+        System.out.println("\nThe School list:");
         schSet.stream().forEach(sch -> System.out.println(sch.getName()));
         firstProblem.studLikeSch(schSet);
         
