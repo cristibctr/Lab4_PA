@@ -11,8 +11,10 @@ package lab4_pa;
  */
 public class School implements Comparable<School> {
     private String name;
-    public School(String name) {
+    private int capacity;
+    public School(String name, int capacity) {
         this.name = name;
+        this.capacity = capacity;
     }
 
     public String getName() {
@@ -21,6 +23,14 @@ public class School implements Comparable<School> {
     @Override
     public int compareTo(School other){
         return this.name.compareTo(other.name);
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
     }
     
 }
