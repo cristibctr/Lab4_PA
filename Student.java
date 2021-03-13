@@ -9,12 +9,12 @@ package lab4_pa;
  *
  * @author crist
  */
-public class Student {
+public class Student implements Comparable<Student>{
     private String name;
     private int examScore;
     public Student(String name){
         this.name = name;
-        examScore = (int)(Math.random()*10);
+        examScore = (int)(Math.random()*10) + 1;
     }
 
     public String getName() {
@@ -24,6 +24,9 @@ public class Student {
     public int getExamScore() {
         return examScore;
     }
-    
+    @Override
+    public int compareTo(Student other){
+        return other.examScore - this.examScore;
+    }
     
 }

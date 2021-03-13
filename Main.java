@@ -18,7 +18,7 @@ public class Main {
     {
         Problem firstProblem = new Problem();
         firstProblem.printProblem();
-        Solution firstSolution = new Solution(firstProblem);
+        Solution firstSolution = new ExamScoreSolution(firstProblem);
         firstSolution.solve();
         firstSolution.printSolution();
         
@@ -29,8 +29,7 @@ public class Main {
         System.out.println("\nThe School list:");
         schSet.stream().forEach(sch -> System.out.println(sch.getName()));
         firstProblem.studLikeSch(schSet);
-        
-        
+
         firstProblem.schoolTopPref(firstProblem.getStudentList().get(0));
     }
 }

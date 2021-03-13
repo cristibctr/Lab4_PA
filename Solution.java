@@ -13,31 +13,12 @@ import java.util.Set;
  *
  * @author crist
  */
-public class Solution {
+public abstract class Solution {
     Problem pb;
     Map<Student, School> studToSchool = new HashMap<>();
     public Solution(Problem pb) {
         this.pb = pb;
     }
-    
-    public void solve(){
-        pb.getStudentList().stream().forEach(std -> {
-        for(School sch : pb.getSchoolSet())
-            if(sch.getCapacity() != 0)
-            {
-                sch.setCapacity(sch.getCapacity()-1);
-                studToSchool.put(std, sch);
-                break;
-            }
-        });
-    }
-    public void printSolution()
-    {
-        Set<Map.Entry<Student, School>> entries = studToSchool.entrySet();
-        System.out.println();
-        System.out.println("The students are assigned to these schools without taking into account their exam note:");
-        entries.stream().forEach(entry -> {
-            System.out.println(entry.getKey().getName() + ":" + entry.getValue().getName());
-        });
-    }
+    abstract public void solve();
+    abstract public void printSolution();
 }

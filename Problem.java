@@ -78,7 +78,7 @@ public class Problem {
     public void printProblem() {
         System.out.println("Students:");
         studentList.stream().forEach(s -> {
-            System.out.print(s.getName() + ": ");
+            System.out.print(s.getName() + " (score: " + s.getExamScore() + ")" + ": ");
             stdPrefMap.get(s).stream().forEach(std -> System.out.print(std.getName() + " | "));
             System.out.println();
         });
