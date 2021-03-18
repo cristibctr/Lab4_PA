@@ -18,18 +18,20 @@ public class Main {
     {
         Problem firstProblem = new Problem();
         firstProblem.printProblem();
-        Solution firstSolution = new ExamScoreSolution(firstProblem);
+        Solution firstSolution = new GaleShapley(firstProblem);
         firstSolution.solve();
         firstSolution.printSolution();
         
-        //List of schools based on some conditions - used to check which students like all of them
+        //List of schools based on some random conditions - used to check which students like all of them
         List<School> schSet = new ArrayList<> (firstProblem.getSchoolSet().stream()
                 .filter(sch -> sch.getName().length() < 12 || sch.getName().contains("Academy"))
                 .collect(Collectors.toList()));
+        
         System.out.println("\nThe School list:");
         schSet.stream().forEach(sch -> System.out.println(sch.getName()));
         firstProblem.studLikeSch(schSet);
 
         firstProblem.schoolTopPref(firstProblem.getStudentList().get(0));
+        
     }
 }

@@ -11,10 +11,28 @@ package lab4_pa;
  */
 public class School implements Comparable<School> {
     private String name;
-    private int capacity;
+    private int capacity, id;
+    private Criteria criteria;
+    
     public School(String name, int capacity) {
         this.name = name;
         this.capacity = capacity;
+    }
+    
+    public School(String name, int capacity, int id) {
+        this.name = name;
+        this.capacity = capacity;
+        this.id = id;
+    }
+    
+    public School(String name, int capacity, Criteria criteria) {
+        this.name = name;
+        this.capacity = capacity;
+        this.criteria = criteria;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getName() {
@@ -32,5 +50,14 @@ public class School implements Comparable<School> {
     public void setCapacity(int capacity) {
         this.capacity = capacity;
     }
+
+    public void setCriteria(Criteria criteria) {
+        this.criteria = criteria;
+    }
+
+    public Criteria getCriteria() {
+        return criteria;
+    }
+    
     
 }
